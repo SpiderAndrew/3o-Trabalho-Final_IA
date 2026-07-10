@@ -1,3 +1,77 @@
+# Trabalho Final: Raciocínio Neuro-Simbólico com Logic Tensor Networks
+
+Este repositório contém o desenvolvimento e os resultados do Trabalho Final da disciplina de **Fundamentos de Inteligência Artificial**. O projeto explora o paradigma Neuro-Simbólico aplicando *Logic Tensor Networks* (LTN) sobre uma versão estruturada e simplificada do dataset CLEVR.
+
+
+## Informações Institucionais
+
+* **Instituição:** Universidade Federal do Amazonas (UFAM)
+* **Departamento:** Instituto de Computação (IComp)
+* **Disciplina:** Fundamentos de Inteligência Artificial
+* **Professor:** Edjard Mota
+* **Data de Entrega:** Julho de 2026
+
+
+## Equipe de Desenvolvimento
+
+Abaixo estão apresentados os membros acadêmicos responsáveis pela execução do projeto, organizados em ordem alfabética:
+
+| Nome Completo | Matrícula |
+| :--- | :---: |
+| Anderson Oliveira de Araújo | 22152023 |
+| Andrew Donovan Coelho Santos | 22152016 |
+| Iasmin Rocha dos Santos | 22052625 |
+| Isaque da Silva Targino | 22352193 |
+| Sabrina Amorim da Penha | 22152026 |
+
+
+## 1. NeSy (Neuro-Symbolic AI) e Logic Tensor Networks (LTN)
+
+### 1.1 O que é NeSy?
+
+A IA Neuro-Simbólica (*Neuro-Symbolic AI*, NeSy) é um paradigma que combina duas abordagens complementares da inteligência artificial:
+
+* **Aprendizado profundo (Deep Learning):** Excelente em aprender padrões a partir de dados brutos (imagens, texto, áudio), mas funciona como uma "caixa preta" sem capacidade de raciocínio lógico explícito.
+* **IA Simbólica / Lógica Formal:** Capaz de raciocínio dedutivo preciso a partir de regras e fatos, mas frágil a ruídos e incapaz de aprender autonomamente.
+
+O NeSy une os dois mundos: usa redes neurais para *aprender representações* a partir de dados, enquanto impõe *restrições lógicas* sobre essas representações para garantir coerência e capacidade de raciocínio. Isso permite que o sistema **generalize** como uma rede neural e **raciocine** como um sistema simbólico.
+
+### 1.2 Logic Tensor Networks (LTN)
+
+LTN é uma implementação concreta da abordagem NeSy proposta por Serafini & Garcez (2016). Seus pilares são:
+
+| Conceito LTN | Implementação |
+|---|---|
+| **Constantes** | Tensores representando objetos individuais |
+| **Variáveis** | Tensores representando conjuntos de objetos sobre os quais se quantifica |
+| **Predicados** | Redes neurais que mapeiam tensores para valores em [0, 1] (verdade fuzzy) |
+| **Conectivos** | Operações diferenciáveis (produto para ∧, soma probabilística para ∨, Reichenbach para ⇒) |
+| **Quantificadores** | Agregadores diferenciáveis (pMean Error para ∀, pMean para ∃) |
+| **Base de Conhecimento (KB)** | Conjunto de fórmulas lógicas de primeiro-ordem expressas como operações tensoriais |
+
+O **objetivo de treinamento** é maximizar a satisfatibilidade agregada (SatAgg) da KB:
+
+$$\hat{\theta} = \arg\max_\theta \text{SatAgg}(\phi_1, \phi_2, \ldots, \phi_n)$$
+
+onde cada $\phi_i$ é uma fórmula da KB avaliada pela rede com parâmetros $\theta$.
+
+A **chave da diferenciabilidade**: todas as operações lógicas são substituídas por aproximações contínuas e diferenciáveis, permitindo otimização por gradiente descendente.
+
+---
+
+## 2. O Dataset CLEVR e a Representação Simplificada
+
+### 2.1 CLEVR Original
+
+O dataset **CLEVR** (*Compositional Language and Elementary Visual Reasoning*) foi criado por Johnson et al. (2017) para avaliar a capacidade de sistemas de IA em realizar raciocínio composicional sobre cenas visuais. Cada cena contém objetos 3D com propriedades variadas, e o modelo deve responder perguntas em linguagem natural (*Visual Question Answering*).
+
+### 2.2 Nossa Representação Simplificada
+
+Em vez de imagens brutas (que exigiriam CNNs pesadas), cada objeto é representado por um **vetor de características de 11 dimensões**:
+
+
+
+
 ## 1. NeSy (Neuro-Symbolic AI) e Logic Tensor Networks (LTN)
 
 ### 1.1 O que é NeSy?
